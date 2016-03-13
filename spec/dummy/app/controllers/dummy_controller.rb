@@ -1,17 +1,20 @@
 class DummyController < ApplicationController
   include EzCache
 
-  ez_cache_action key: 'dummmy/index',
-                  params: [:q],
-                  only: [:index]
+  ez_cache_action :index, 'dummmy/index', params: [:page]
 
-  ez_cache_action key: 'dummmy/protected',
-                  headers: [:authorization],
-                  only: [:protected]
+  ez_cache_action :protected, 'dummmy/protected', headers: [:authorization]
+
+  ez_cache_action :show, 'dummmy/show/:id'
 
   # Returns the current time
   def index
     render json: {time: Time.now}
+  end
+
+  # Returns the given id
+  def show
+    render json: {id: params.permit(:id)[:id]}
   end
 
   # Checks the authorization header

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ez-cache (0.1.0)
+    ez-cache (1.0.0)
       rails (>= 5.0.0.beta3, < 5.1)
 
 GEM
